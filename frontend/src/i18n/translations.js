@@ -196,7 +196,7 @@ const translations = {
 
     // ── Landing — Hero ─────────────────────────────────────────
     'landing.hero.badge': '🇰🇿 Қазақстан · 🇷🇺 Ресей',
-    'landing.hero.title1': 'Spotify Premium',
+    'landing.hero.title1': '???????????',
     'landing.hero.title2': 'Отбасылық жоспарлар',
     'landing.hero.subtitle': 'Қазақстан мен Ресейге арналған қолжетімді жазылымдар. Telegram арқылы басқару, әкімшілер тексеруімен.',
     'landing.hero.cta': 'Telegram арқылы бастау',
@@ -360,7 +360,7 @@ const translations = {
     'nav.openBot': 'Open Bot',
 
     // ── Footer ─────────────────────────────────────────────────
-    'footer.tagline': 'Premium Spotify subscriptions for KZ & RU',
+    'footer.tagline': 'Subscriptions for Spotify, YouTube Premium, ChatGPT Plus, Discord Nitro, and more',
     'footer.navLabel': 'Navigation',
     'footer.supportLabel': 'Support',
     'footer.supportLink': 'Contact @sptfy_premium',
@@ -369,9 +369,9 @@ const translations = {
 
     // ── Landing — Hero ─────────────────────────────────────────
     'landing.hero.badge': '🇰🇿 Kazakhstan · 🇷🇺 Russia',
-    'landing.hero.title1': 'Premium Spotify',
-    'landing.hero.title2': 'Family Plans',
-    'landing.hero.subtitle': 'Affordable shared subscriptions for Kazakhstan & Russia. Managed via Telegram, verified by admins.',
+    'landing.hero.title1': 'Subscriptions to',
+    'landing.hero.title2': 'popular services',
+    'landing.hero.subtitle': 'We help customers in Kazakhstan and Russia subscribe to Spotify, YouTube Premium, ChatGPT Plus, Discord Nitro, and other services through Telegram.',
     'landing.hero.cta': 'Get Started via Telegram',
     'landing.hero.ctaSecondary': 'View Pricing',
     'landing.hero.trust1': 'Admin-verified',
@@ -381,13 +381,13 @@ const translations = {
     // ── Landing — Features ─────────────────────────────────────
     'landing.features.tag': 'Why choose us',
     'landing.features.title': 'Everything you need',
-    'landing.features.subtitle': 'A fully managed Spotify Family service built for the KZ and RU markets.',
+    'landing.features.subtitle': 'A fully managed digital subscription service built for the KZ and RU markets.',
     'landing.feature1.title': 'Two Regions',
     'landing.feature1.desc': 'Support for Kazakhstan (₸) and Russia (₽) with local payment methods including Kaspi, card transfers, and SBP.',
     'landing.feature2.title': 'Flexible Plans',
     'landing.feature2.desc': 'Pay for 1 to 12 months upfront. Choose group plans or personal individual accounts.',
     'landing.feature3.title': 'Smart Reminders',
-    'landing.feature3.desc': 'Automated daily reminders before your payment is due. Never lose access to Spotify.',
+    'landing.feature3.desc': 'Automated daily reminders before your payment is due. Never lose access to the service you use.',
     'landing.feature4.title': 'Admin-Verified',
     'landing.feature4.desc': 'Every subscription request is manually reviewed and approved by our team.',
 
@@ -402,11 +402,11 @@ const translations = {
     'landing.step3.title': 'Upload your receipt',
     'landing.step3.desc': 'Send proof of payment directly to the Telegram bot. Our team reviews it promptly.',
     'landing.step4.title': 'Get instant access',
-    'landing.step4.desc': 'Once approved by an admin, you receive your Spotify Family slot immediately.',
+    'landing.step4.desc': 'Once approved by an admin, you receive access to your chosen service right away.',
 
     // ── Landing — CTA Banner ───────────────────────────────────
     'landing.cta.title': 'Ready to get started?',
-    'landing.cta.desc': 'Join hundreds of subscribers already enjoying premium Spotify access.',
+    'landing.cta.desc': 'Get the subscription you need quickly and conveniently through Telegram.',
     'landing.cta.btn': 'Open Telegram Bot',
 
     // ── Pricing ────────────────────────────────────────────────
@@ -437,17 +437,17 @@ const translations = {
     'pricing.plan.12months': '12 Months',
     'pricing.plan.individual': 'Individual',
     'pricing.plan.duo': 'Duo',
-    'pricing.feature.kz1': 'Spotify Family slot',
+    'pricing.feature.kz1': 'Activation of your chosen service',
     'pricing.feature.kz2': 'Pay via Kaspi Bank',
     'pricing.feature.kz3': 'Admin-verified setup',
     'pricing.feature.kz4': 'Payment reminders',
     'pricing.feature.kz5': 'Cancel anytime',
-    'pricing.feature.rug1': 'Spotify Family slot',
+    'pricing.feature.rug1': 'Activation of your chosen service',
     'pricing.feature.rug2': 'Pay via Card or SBP',
     'pricing.feature.rug3': 'Admin-verified setup',
     'pricing.feature.rug4': 'Payment reminders',
     'pricing.feature.rug5': 'Cancel anytime',
-    'pricing.feature.ind1': 'Personal Spotify account',
+    'pricing.feature.ind1': 'Personal service account',
     'pricing.feature.ind2': 'No sharing — just you',
     'pricing.feature.ind3': 'Monthly auto-reminders',
     'pricing.feature.ind4': 'Flexible payment day',
@@ -471,11 +471,11 @@ const translations = {
     'faq.q2': 'What payment methods are accepted?',
     'faq.a2': 'Kazakhstan: Kaspi Bank (direct payment link provided). Russia: card transfer to VTB, or SBP (Fast Payment System) via phone number.',
     'faq.q3': 'How long does approval take?',
-    'faq.a3': 'Admin approval is typically done within a few hours. You have a 30-minute window to complete the payment after starting an order. Once approved, you receive your Spotify access immediately.',
+    'faq.a3': 'Admin approval is typically done within a few hours. You have a 30-minute window to complete the payment after starting an order. Once approved, you receive access to your chosen service as quickly as possible.',
     'faq.q4': 'Can I pay for multiple months upfront?',
     'faq.a4': 'Yes! Kazakhstan plans support 1–6 months. Russian plans support 1–12 months upfront at the same monthly rate.',
     'faq.q5': 'What is the difference between Group and Individual plans?',
-    'faq.a5': 'Group plans add you to a shared Spotify Family plan (lowest cost). Individual plans give you a personal Spotify account. Duo plans cover two people on one account.',
+    'faq.a5': 'Group plans place you into a shared plan when the service supports it. Individual plans give you a personal account. Duo plans cover two people on one account.',
     'faq.q6': 'How do payment reminders work?',
     'faq.a6': 'The bot sends automated daily reminders starting 3 days before your payment is due. If you\'re 1–3 days overdue you\'ll receive escalating reminders. Admins are alerted if you\'re 3+ days late.',
     'faq.q7': 'Can I cancel my subscription?',

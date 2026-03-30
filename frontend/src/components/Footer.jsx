@@ -1,10 +1,19 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import {
+  getBusinessDetails,
+  getLegalLinks,
+  siteDetails,
+} from '../content/siteDetails.js'
 import styles from './Footer.module.css'
 
 export default function Footer() {
   const year = new Date().getFullYear()
-  const { t } = useLanguage()
+  const { lang, t } = useLanguage()
+  const legalLinks = getLegalLinks(lang)
+  const businessDetails = getBusinessDetails(lang)
+  const footerTitle = siteDetails.legal.footerTitle[lang] ?? siteDetails.legal.footerTitle.ru
+  const supportNote = siteDetails.support.workingHours[lang] ?? siteDetails.support.workingHours.ru
 
   return (
     <footer className={styles.footer}>
@@ -14,7 +23,7 @@ export default function Footer() {
           <div className={styles.brand}>
             <Link to="/" className={styles.logo}>
               <span className={styles.logoGlyph}>✦</span>
-              <span className={styles.logoText}>Spotify Family</span>
+              <span className={styles.logoText}>{siteDetails.brandName}</span>
             </Link>
             <p className={styles.tagline}>{t('footer.tagline')}</p>
           </div>
@@ -32,14 +41,33 @@ export default function Footer() {
           <div className={styles.support}>
             <span className={styles.navLabel}>{t('footer.supportLabel')}</span>
             <a
-              href="https://t.me/sptfy_premium"
+              href={siteDetails.support.telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.supportLink}
             >
-              {t('footer.supportLink')}
+              {siteDetails.support.telegramHandle}
             </a>
-            <p className={styles.supportNote}>{t('footer.supportNote')}</p>
+            <p className={styles.supportNote}>{supportNote}</p>
+          </div>
+        </div>
+
+        <div className={styles.legalBar}>
+          <nav className={styles.legalLinks} aria-label="Legal navigation">
+            {legalLinks.map((link) => (
+              <Link key={link.to} to={link.to} className={styles.legalLink}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className={styles.businessBlock}>
+            <span className={styles.businessTitle}>{footerTitle}</span>
+            {businessDetails.map((line) => (
+              <p key={line} className={styles.businessLine}>
+                {line}
+              </p>
+            ))}
           </div>
         </div>
 

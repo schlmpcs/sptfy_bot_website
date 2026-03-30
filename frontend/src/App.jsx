@@ -6,6 +6,7 @@ import Landing from './pages/Landing.jsx'
 import Pricing from './pages/Pricing.jsx'
 import FAQ from './pages/FAQ.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import LegalPage from './pages/LegalPage.jsx'
 
 export default function App() {
   return (
@@ -17,6 +18,9 @@ export default function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/offer" element={<LegalPage documentKey="offer" />} />
+          <Route path="/privacy" element={<LegalPage documentKey="privacy" />} />
+          <Route path="/safety" element={<LegalPage documentKey="safety" />} />
         </Routes>
       </main>
       <Footer />

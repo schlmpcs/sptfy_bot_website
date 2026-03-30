@@ -1,7 +1,7 @@
 .footer {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border);
-  padding: 64px 0 32px;
+  padding: 64px 0 28px;
   margin-top: auto;
 }
 
@@ -102,12 +102,63 @@
   margin-top: 4px;
 }
 
+.legalBar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.legalLink {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legalLink:hover {
+  color: var(--text-primary);
+}
+
+.legalLink + .legalLink::before {
+  content: '|';
+  color: rgba(255, 255, 255, 0.2);
+  margin-right: 12px;
+}
+
+.businessBlock {
+  text-align: right;
+}
+
+.businessTitle {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.businessLine {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
 /* ── Bottom bar ── */
 .bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 28px;
+  padding-top: 24px;
   gap: 16px;
   flex-wrap: wrap;
 }
@@ -134,6 +185,15 @@
   .grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .legalBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .businessBlock {
+    text-align: left;
   }
 
   .bottom {

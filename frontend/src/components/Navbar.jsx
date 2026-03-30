@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { siteDetails } from '../content/siteDetails.js'
 import styles from './Navbar.module.css'
 
 const LANG_OPTIONS = [
@@ -28,7 +29,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className={styles.logo} onClick={closeMenu}>
           <span className={styles.logoGlyph}>✦</span>
-          <span className={styles.logoText}>Spotify Family</span>
+          <span className={styles.logoText}>{siteDetails.brandName}</span>
         </Link>
 
         {/* Desktop nav links */}
