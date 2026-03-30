@@ -1,88 +1,40 @@
 import { useState } from 'react'
 import GlowCard from '../components/GlowCard.jsx'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 import styles from './Pricing.module.css'
 
 const TELEGRAM_URL = 'https://t.me/sptfy_premium'
 
-/* ── Features ── */
-const KZ_FEATURES = [
-  'Spotify Family slot',
-  'Pay via Kaspi Bank',
-  'Admin-verified setup',
-  'Payment reminders',
-  'Cancel anytime',
-]
-
-const RU_GROUP_FEATURES = [
-  'Spotify Family slot',
-  'Pay via Card or SBP',
-  'Admin-verified setup',
-  'Payment reminders',
-  'Cancel anytime',
-]
-
-const RU_INDIVIDUAL_FEATURES = [
-  'Personal Spotify account',
-  'No sharing',
-  'Monthly auto-reminders',
-  'Flexible payment day',
-  'Card or SBP payment',
-]
-
-const RU_DUO_FEATURES = [
-  'Two-person account',
-  'Share with one person',
-  'Monthly auto-reminders',
-  'Flexible payment day',
-  'Card or SBP payment',
-]
-
-/* ── Plan definitions ── */
 const KZ_PLANS = [
-  { months: 1, basePrice: 700, label: '1 Month', badge: null },
-  { months: 3, basePrice: 700, label: '3 Months', badge: 'Popular' },
-  { months: 6, basePrice: 700, label: '6 Months', badge: 'Best Value' },
+  { months: 1, basePrice: 700, labelKey: 'pricing.plan.1month', badge: null },
+  { months: 3, basePrice: 700, labelKey: 'pricing.plan.3months', badge: 'popular' },
+  { months: 6, basePrice: 700, labelKey: 'pricing.plan.6months', badge: 'bestValue' },
 ]
 
 const RU_GROUP_PLANS = [
-  { months: 1, basePrice: 200, label: '1 Month', badge: null },
-  { months: 3, basePrice: 200, label: '3 Months', badge: 'Popular' },
-  { months: 6, basePrice: 200, label: '6 Months', badge: 'Best Value' },
-  { months: 12, basePrice: 200, label: '12 Months', badge: 'Max Savings' },
+  { months: 1, basePrice: 200, labelKey: 'pricing.plan.1month', badge: null },
+  { months: 3, basePrice: 200, labelKey: 'pricing.plan.3months', badge: 'popular' },
+  { months: 6, basePrice: 200, labelKey: 'pricing.plan.6months', badge: 'bestValue' },
+  { months: 12, basePrice: 200, labelKey: 'pricing.plan.12months', badge: 'maxSavings' },
 ]
 
-/**
- * A single plan card.
- * @param {object} props
- */
-function PlanCard({
-  label,
-  price,
-  currency,
-  perMonth,
-  features,
-  badge,
-  highlighted = false,
-}) {
+function PlanCard({ label, price, currency, perMonth, features, badgeKey, highlighted = false, t }) {
+  const badgeText = badgeKey ? t(`pricing.badge.${badgeKey}`) : null
   return (
     <GlowCard highlighted={highlighted} className={styles.planCard}>
-      {badge && (
-        <span
-          className={`${styles.badge} ${highlighted ? styles.badgeHighlighted : ''}`}
-        >
-          {badge}
+      {badgeText && (
+        <span className={`${styles.badge} ${highlighted ? styles.badgeHighlighted : ''}`}>
+          {badgeText}
         </span>
       )}
       <div className={styles.planHeader}>
         <h3 className={styles.planLabel}>{label}</h3>
         <div className={styles.planPriceRow}>
-          <span className={styles.planPrice}>
-            {currency}{price}
-          </span>
+          <span className={styles.planPrice}>{currency}{price}</span>
         </div>
         {perMonth !== null && (
           <p className={styles.planPerMonth}>
-            {currency}{perMonth} / month
+            {t('pricing.perMonth').replace('{currency}', currency).replace('{price}', perMonth)}
           </p>
         )}
       </div>
@@ -102,14 +54,20 @@ function PlanCard({
         rel="noopener noreferrer"
         className={`${styles.subscribeBtn} ${highlighted ? styles.subscribeBtnHighlighted : ''}`}
       >
-        Subscribe via Telegram
+        {t('pricing.subscribeBtn')}
       </a>
     </GlowCard>
   )
 }
 
-/** Kazakhstan plans tab */
-function KZPlans() {
+function KZPlans({ t }) {
+  const features = [
+    t('pricing.feature.kz1'),
+    t('pricing.feature.kz2'),
+    t('pricing.feature.kz3'),
+    t('pricing.feature.kz4'),
+    t('pricing.feature.kz5'),
+  ]
   return (
     <div className={styles.plansGrid}>
       {KZ_PLANS.map((plan) => {
@@ -118,13 +76,14 @@ function KZPlans() {
         return (
           <PlanCard
             key={plan.months}
-            label={plan.label}
+            label={t(plan.labelKey)}
             price={total}
             currency="₸"
             perMonth={perMonth}
-            features={KZ_FEATURES}
-            badge={plan.badge}
-            highlighted={plan.badge === 'Popular'}
+            features={features}
+            badgeKey={plan.badge}
+            highlighted={plan.badge === 'popular'}
+            t={t}
           />
         )
       })}
@@ -132,9 +91,30 @@ function KZPlans() {
   )
 }
 
-/** Russia plans tab — with sub-tabs for Group / Individual & Duo */
-function RUPlans() {
+function RUPlans({ t }) {
   const [subTab, setSubTab] = useState('group')
+
+  const groupFeatures = [
+    t('pricing.feature.rug1'),
+    t('pricing.feature.rug2'),
+    t('pricing.feature.rug3'),
+    t('pricing.feature.rug4'),
+    t('pricing.feature.rug5'),
+  ]
+  const indFeatures = [
+    t('pricing.feature.ind1'),
+    t('pricing.feature.ind2'),
+    t('pricing.feature.ind3'),
+    t('pricing.feature.ind4'),
+    t('pricing.feature.ind5'),
+  ]
+  const duoFeatures = [
+    t('pricing.feature.duo1'),
+    t('pricing.feature.duo2'),
+    t('pricing.feature.duo3'),
+    t('pricing.feature.duo4'),
+    t('pricing.feature.duo5'),
+  ]
 
   return (
     <div>
@@ -143,13 +123,13 @@ function RUPlans() {
           className={`${styles.subTab} ${subTab === 'group' ? styles.subTabActive : ''}`}
           onClick={() => setSubTab('group')}
         >
-          Group
+          {t('pricing.subtab.group')}
         </button>
         <button
           className={`${styles.subTab} ${subTab === 'individual' ? styles.subTabActive : ''}`}
           onClick={() => setSubTab('individual')}
         >
-          Individual / Duo
+          {t('pricing.subtab.individual')}
         </button>
       </div>
 
@@ -161,13 +141,14 @@ function RUPlans() {
             return (
               <PlanCard
                 key={plan.months}
-                label={plan.label}
+                label={t(plan.labelKey)}
                 price={total}
                 currency="₽"
                 perMonth={perMonth}
-                features={RU_GROUP_FEATURES}
-                badge={plan.badge}
-                highlighted={plan.badge === 'Popular'}
+                features={groupFeatures}
+                badgeKey={plan.badge}
+                highlighted={plan.badge === 'popular'}
+                t={t}
               />
             )
           })}
@@ -177,22 +158,24 @@ function RUPlans() {
       {subTab === 'individual' && (
         <div className={styles.plansGrid}>
           <PlanCard
-            label="Individual"
+            label={t('pricing.plan.individual')}
             price={250}
             currency="₽"
             perMonth={null}
-            features={RU_INDIVIDUAL_FEATURES}
-            badge="Personal"
+            features={indFeatures}
+            badgeKey="personal"
             highlighted={false}
+            t={t}
           />
           <PlanCard
-            label="Duo"
+            label={t('pricing.plan.duo')}
             price={600}
             currency="₽"
             perMonth={300}
-            features={RU_DUO_FEATURES}
-            badge="Best for Two"
+            features={duoFeatures}
+            badgeKey="bestForTwo"
             highlighted={true}
+            t={t}
           />
         </div>
       )}
@@ -200,11 +183,9 @@ function RUPlans() {
   )
 }
 
-/**
- * Pricing page — region tab switcher with plan cards.
- */
 export default function Pricing() {
   const [region, setRegion] = useState('KZ')
+  const { t } = useLanguage()
 
   return (
     <div className={styles.page}>
@@ -213,12 +194,9 @@ export default function Pricing() {
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
-          <span className={styles.sectionTag}>Transparent pricing</span>
-          <h1 className={styles.title}>Simple, affordable plans</h1>
-          <p className={styles.subtitle}>
-            Choose your region and the plan that works best for you.
-            All plans include admin-verified setup and automated reminders.
-          </p>
+          <span className={styles.sectionTag}>{t('pricing.tag')}</span>
+          <h1 className={styles.title}>{t('pricing.title')}</h1>
+          <p className={styles.subtitle}>{t('pricing.subtitle')}</p>
         </div>
 
         {/* Region tab switcher */}
@@ -229,7 +207,7 @@ export default function Pricing() {
             className={`${styles.regionTab} ${region === 'KZ' ? styles.regionTabActive : ''}`}
             onClick={() => setRegion('KZ')}
           >
-            🇰🇿 Kazakhstan
+            {t('pricing.tab.kz')}
           </button>
           <button
             role="tab"
@@ -237,13 +215,13 @@ export default function Pricing() {
             className={`${styles.regionTab} ${region === 'RU' ? styles.regionTabActive : ''}`}
             onClick={() => setRegion('RU')}
           >
-            🇷🇺 Russia
+            {t('pricing.tab.ru')}
           </button>
         </div>
 
         {/* Plans */}
         <div className={styles.plansSection}>
-          {region === 'KZ' ? <KZPlans /> : <RUPlans />}
+          {region === 'KZ' ? <KZPlans t={t} /> : <RUPlans t={t} />}
         </div>
 
         {/* Footer note */}
@@ -251,18 +229,24 @@ export default function Pricing() {
           <div className={styles.noteInner}>
             <span className={styles.noteIcon}>ℹ</span>
             <p className={styles.noteText}>
-              All subscriptions are managed via our Telegram bot{' '}
+              {t('pricing.note')
+                .split('{link}')[0]}
               <a
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.noteLink}
               >
-                @sptfy_premium
+                {t('pricing.noteLink')}
               </a>
-              . Payment is made directly to your bank — we never store card details.
-              Have questions? Check the{' '}
-              <a href="/faq" className={styles.noteLink}>FAQ page</a>.
+              {t('pricing.note')
+                .split('{link}')[1]
+                ?.split('{faqLink}')[0]}
+              <a href="/faq" className={styles.noteLink}>
+                {t('pricing.noteFaq')}
+              </a>
+              {t('pricing.note')
+                .split('{faqLink}')[1]}
             </p>
           </div>
         </GlowCard>

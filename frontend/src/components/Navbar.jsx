@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 import styles from './Navbar.module.css'
 
-/**
- * Sticky top navigation bar with glassmorphism effect on scroll.
- * Includes responsive hamburger menu (CSS + minimal JS for toggle state).
- */
+const LANG_OPTIONS = [
+  { code: 'ru', label: 'RU' },
+  { code: 'kz', label: 'KZ' },
+  { code: 'en', label: 'EN' },
+]
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { t, lang, setLang } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -16,7 +20,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close menu on route change / outside click
   const closeMenu = () => setMenuOpen(false)
 
   return (
@@ -38,7 +41,7 @@ export default function Navbar() {
             }
             onClick={closeMenu}
           >
-            Home
+            {t('nav.home')}
           </NavLink>
           <NavLink
             to="/pricing"
@@ -47,7 +50,7 @@ export default function Navbar() {
             }
             onClick={closeMenu}
           >
-            Pricing
+            {t('nav.pricing')}
           </NavLink>
           <NavLink
             to="/faq"
@@ -56,7 +59,7 @@ export default function Navbar() {
             }
             onClick={closeMenu}
           >
-            FAQ
+            {t('nav.faq')}
           </NavLink>
           <NavLink
             to="/dashboard"
@@ -65,7 +68,7 @@ export default function Navbar() {
             }
             onClick={closeMenu}
           >
-            Dashboard
+            {t('nav.dashboard')}
           </NavLink>
 
           {/* Mobile-only CTA inside nav */}
@@ -76,9 +79,23 @@ export default function Navbar() {
             className={`${styles.ctaBtn} ${styles.ctaMobile}`}
             onClick={closeMenu}
           >
-            Open Bot
+            {t('nav.openBot')}
           </a>
         </nav>
+
+        {/* Language switcher */}
+        <div className={styles.langSwitcher} aria-label="Language switcher">
+          {LANG_OPTIONS.map((opt) => (
+            <button
+              key={opt.code}
+              className={`${styles.langBtn} ${lang === opt.code ? styles.langBtnActive : ''}`}
+              onClick={() => setLang(opt.code)}
+              aria-pressed={lang === opt.code}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
 
         {/* Desktop CTA */}
         <a
@@ -87,7 +104,7 @@ export default function Navbar() {
           rel="noopener noreferrer"
           className={styles.ctaBtn}
         >
-          Open Bot
+          {t('nav.openBot')}
         </a>
 
         {/* Hamburger */}
