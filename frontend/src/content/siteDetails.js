@@ -33,8 +33,7 @@ export const siteDetails = {
       en: 'Business details',
     },
     ownerName: readEnv('VITE_LEGAL_OWNER_NAME', 'ИП / ФИО предпринимателя'),
-    inn: readEnv('VITE_LEGAL_INN'),
-    ogrnip: readEnv('VITE_LEGAL_OGRNIP'),
+    bin: readEnv('VITE_LEGAL_BIN'),
     registrationAddress: readEnv('VITE_LEGAL_REGISTRATION_ADDRESS'),
     paymentMethods: {
       ru: ['банковская карта', 'СБП', 'локальные переводы по согласованию'],
@@ -85,42 +84,36 @@ export function getBusinessDetails(lang) {
   const labels =
     {
       ru: {
-        inn: 'ИНН',
-        ogrnip: 'ОГРНИП',
+        bin: 'БИН',
         address: 'Адрес регистрации',
         setup: 'Заполните реквизиты в файле siteDetails.js',
       },
       kz: {
-        inn: 'БСН/ЖСН',
-        ogrnip: 'ОГРНИП',
+        bin: 'БИН',
         address: 'Тіркеу мекенжайы',
         setup: 'Деректерді siteDetails.js файлына толтырыңыз',
       },
       en: {
-        inn: 'TIN',
-        ogrnip: 'OGRNIP',
+        bin: 'BIN',
         address: 'Registered address',
         setup: 'Fill in the business details in siteDetails.js',
       },
     }[lang] ??
     {
-      inn: 'ИНН',
-      ogrnip: 'ОГРНИП',
+      bin: 'БИН',
       address: 'Адрес регистрации',
       setup: 'Заполните реквизиты в файле siteDetails.js',
     }
 
   const lines = [siteDetails.legal.ownerName]
 
-  if (siteDetails.legal.inn) lines.push(`${labels.inn} ${siteDetails.legal.inn}`)
-  if (siteDetails.legal.ogrnip) lines.push(`${labels.ogrnip} ${siteDetails.legal.ogrnip}`)
+  if (siteDetails.legal.bin) lines.push(`${labels.bin} ${siteDetails.legal.bin}`)
   if (siteDetails.legal.registrationAddress) {
     lines.push(`${labels.address}: ${siteDetails.legal.registrationAddress}`)
   }
 
   if (
-    !siteDetails.legal.inn &&
-    !siteDetails.legal.ogrnip &&
+    !siteDetails.legal.bin &&
     !siteDetails.legal.registrationAddress
   ) {
     lines.push(labels.setup)
