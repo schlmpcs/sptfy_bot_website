@@ -1,0 +1,321 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 0 120px;
+}
+
+.bgGradient {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(29, 185, 84, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(29, 185, 84, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto 56px;
+}
+
+.sectionTag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 5px 14px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Region tabs ── */
+.regionTabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 6px;
+  width: fit-content;
+  margin: 0 auto 48px;
+  backdrop-filter: blur(8px);
+}
+
+.regionTab {
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.regionTab:hover {
+  color: var(--text-primary);
+}
+
+.regionTabActive {
+  background: var(--accent);
+  color: #000 !important;
+  box-shadow: 0 0 20px rgba(29, 185, 84, 0.35);
+}
+
+/* ── Sub-tabs (RU group vs individual) ── */
+.subTabRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  padding: 5px;
+  width: fit-content;
+  margin: 0 auto 36px;
+}
+
+.subTab {
+  padding: 8px 22px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.subTab:hover {
+  color: var(--text-primary);
+}
+
+.subTabActive {
+  background: rgba(29, 185, 84, 0.15);
+  color: var(--accent) !important;
+  border: 1px solid var(--border);
+}
+
+/* ── Plans grid ── */
+.plansSection {
+  margin-bottom: 48px;
+}
+
+.plansGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Plan card ── */
+.planCard {
+  position: relative;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  padding: 4px 12px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.badgeHighlighted {
+  background: rgba(29, 185, 84, 0.15);
+  color: var(--accent);
+  border-color: var(--border);
+}
+
+.planHeader {
+  margin-bottom: 24px;
+}
+
+.planLabel {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.planPriceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.planPrice {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.planPerMonth {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+/* ── Feature list ── */
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.featureCheck {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Subscribe button ── */
+.subscribeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 20px;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease,
+    border-color 0.2s ease;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.subscribeBtn:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+.subscribeBtnHighlighted {
+  background: var(--accent);
+  color: #000;
+  border-color: transparent;
+}
+
+.subscribeBtnHighlighted:hover {
+  background: var(--accent-glow);
+  box-shadow: var(--glow);
+  transform: translateY(-2px);
+  border-color: transparent;
+}
+
+/* ── Bottom note ── */
+.noteCard {
+  padding: 20px 24px;
+}
+
+.noteInner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.noteIcon {
+  color: var(--accent);
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.noteText {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.noteLink {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.noteLink:hover {
+  color: var(--accent-glow);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .plansGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .regionTabs {
+    width: 100%;
+  }
+
+  .regionTab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+}

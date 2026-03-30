@@ -1,0 +1,23 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(29, 185, 84, 0.4);
+  transform: translateY(-2px);
+}
+
+.highlighted {
+  border-color: rgba(29, 185, 84, 0.5);
+  box-shadow: var(--glow);
+  background: rgba(29, 185, 84, 0.06);
+}
+
+.highlighted:hover {
+  box-shadow: 0 0 60px rgba(29, 185, 84, 0.4);
+}

@@ -1,0 +1,47 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* KZ — green tint */
+.kz_group,
+.kz_individual,
+.kz_duo {
+  background: rgba(29, 185, 84, 0.18);
+  color: #1ed760;
+  border: 1px solid rgba(29, 185, 84, 0.35);
+}
+
+/* RU group — blue tint */
+.ru_group {
+  background: rgba(56, 139, 253, 0.18);
+  color: #79b8ff;
+  border: 1px solid rgba(56, 139, 253, 0.35);
+}
+
+/* RU individual — purple tint */
+.ru_individual {
+  background: rgba(139, 92, 246, 0.18);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+}
+
+/* RU duo — orange tint */
+.ru_duo {
+  background: rgba(251, 146, 60, 0.18);
+  color: #fdba74;
+  border: 1px solid rgba(251, 146, 60, 0.35);
+}
+
+.default {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
