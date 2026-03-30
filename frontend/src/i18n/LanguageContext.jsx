@@ -21,6 +21,11 @@ const TRANSLATION_OVERRIDES = {
     'faq.subtitle': 'Всё, что нужно знать о нашем сервисе подписок. Не нашли ответ?',
     'faq.a3': 'Подтверждение администратором обычно занимает несколько часов. У вас есть 30 минут на завершение оплаты после начала заказа. После подтверждения доступ к выбранному сервису предоставляется максимально быстро.',
     'faq.a5': 'Групповой план — место в общем плане сервиса, если такой формат доступен. Индивидуальный — личный аккаунт только для вас. Duo — аккаунт на двух человек.',
+    'footer.supportLink': 'Написать @sptfy_premium_bot',
+    'pricing.noteLink': '@sptfy_premium_bot',
+    'faq.a1': 'Откройте наш Telegram-бот @sptfy_premium_bot, нажмите «Старт» и следуйте инструкциям. Выберите регион, план, совершите оплату и загрузите квитанцию.',
+    'faq.a8': 'Если квитанция отклонена, вы можете повторно отправить данные в рамках того же запроса. Обратитесь в поддержку @sptfy_premium_bot.',
+    'dashboard.reminder.overdue': '✕ Просрочен платёж. Обратитесь @sptfy_premium_bot срочно.',
   },
   kz: {
     'footer.tagline': 'Spotify, YouTube Premium, ChatGPT Plus, Discord Nitro және басқа сервистерге жазылымдар',
@@ -38,6 +43,11 @@ const TRANSLATION_OVERRIDES = {
     'faq.subtitle': 'Жазылымдар сервисіміз туралы білу қажет нәрсенің бәрі. Жауап таппадыңыз ба?',
     'faq.a3': 'Әкімші растауы әдетте бірнеше сағат ішінде жасалады. Тапсырыс бастағаннан кейін төлемді аяқтауға 30 минут уақытыңыз бар. Растағаннан кейін таңдалған сервиске қолжетімділік мүмкіндігінше тез беріледі.',
     'faq.a5': 'Топтық жоспар — егер сервис қолдаса, ортақ жоспардағы орын. Жеке жоспар — тек сізге арналған жеке аккаунт. Duo — екі адамға арналған аккаунт.',
+    'footer.supportLink': '@sptfy_premium_bot жазу',
+    'pricing.noteLink': '@sptfy_premium_bot',
+    'faq.a1': '@sptfy_premium_bot Telegram-ботымызды ашып, «Старт» басыңыз да, нұсқауларды орындаңыз. Аймақты, жоспарды таңдап, төлем жасап, чекті жүктеңіз.',
+    'faq.a8': 'Чек қабылданбаса, сол сұраныс шеңберінде деректерді қайта жіберуге болады. @sptfy_premium_bot қолдауына хабарласыңыз.',
+    'dashboard.reminder.overdue': '✕ Төлем кешіктірілді. @sptfy_premium_bot-қа шұғыл хабарласыңыз.',
   },
   en: {
     'footer.tagline': 'Subscriptions for Spotify, YouTube Premium, ChatGPT Plus, Discord Nitro, and more',
@@ -55,6 +65,11 @@ const TRANSLATION_OVERRIDES = {
     'faq.subtitle': 'Everything you need to know about our subscription service. Can\'t find an answer?',
     'faq.a3': 'Admin approval is typically done within a few hours. You have a 30-minute window to complete the payment after starting an order. Once approved, you receive access to your chosen service as quickly as possible.',
     'faq.a5': 'Group plans place you into a shared plan when the service supports it. Individual plans give you a personal account. Duo plans cover two people on one account.',
+    'footer.supportLink': 'Contact @sptfy_premium_bot',
+    'pricing.noteLink': '@sptfy_premium_bot',
+    'faq.a1': 'Open our Telegram bot @sptfy_premium_bot, press Start, and follow the guided buy flow. Select your region, choose a plan, make the payment, and upload your receipt.',
+    'faq.a8': 'If your receipt is rejected by the admin, you can resend updated credentials within the same request. Contact @sptfy_premium_bot for support.',
+    'dashboard.reminder.overdue': '✕ Payment overdue. Contact @sptfy_premium_bot immediately.',
   },
 }
 

@@ -11,8 +11,8 @@ export const siteDetails = {
     en: 'A managed service for Spotify, YouTube Premium, ChatGPT Plus, Discord Nitro, and other digital subscriptions.',
   },
   support: {
-    telegramHandle: readEnv('VITE_SUPPORT_TELEGRAM_HANDLE', '@sptfy_premium'),
-    telegramUrl: readEnv('VITE_SUPPORT_TELEGRAM_URL', 'https://t.me/sptfy_premium'),
+    telegramHandle: readEnv('VITE_SUPPORT_TELEGRAM_HANDLE', '@sptfy_premium_bot'),
+    telegramUrl: readEnv('VITE_SUPPORT_TELEGRAM_URL', 'https://t.me/sptfy_premium_bot'),
     email: readEnv('VITE_SUPPORT_EMAIL'),
     phone: readEnv('VITE_SUPPORT_PHONE'),
     workingHours: {

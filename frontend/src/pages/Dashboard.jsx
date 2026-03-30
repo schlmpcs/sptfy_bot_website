@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import GlowCard from '../components/GlowCard.jsx'
 import PlanBadge from '../components/PlanBadge.jsx'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { siteDetails } from '../content/siteDetails.js'
 import styles from './Dashboard.module.css'
 
 const API_BASE = '/api'
@@ -57,7 +58,7 @@ function EmptyState({ t }) {
       <h3 className={styles.emptyTitle}>{t('dashboard.empty.title')}</h3>
       <p className={styles.emptyDesc}>{t('dashboard.empty.desc')}</p>
       <a
-        href="https://t.me/sptfy_premium"
+        href={siteDetails.support.telegramUrl}
         target="_blank"
         rel="noopener noreferrer"
         className={styles.emptyBtn}

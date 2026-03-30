@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import GlowCard from '../components/GlowCard.jsx'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { siteDetails } from '../content/siteDetails.js'
 import styles from './FAQ.module.css'
 
 function AccordionItem({ question, answer, isOpen, onToggle }) {
@@ -59,7 +60,7 @@ export default function FAQ() {
           <p className={styles.subtitle}>
             {t('faq.subtitle')}{' '}
             <a
-              href="https://t.me/sptfy_premium"
+              href={siteDetails.support.telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.supportLink}
@@ -91,7 +92,7 @@ export default function FAQ() {
               <p className={styles.ctaDesc}>{t('faq.cta.desc')}</p>
             </div>
             <a
-              href="https://t.me/sptfy_premium"
+              href={siteDetails.support.telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaBtn}

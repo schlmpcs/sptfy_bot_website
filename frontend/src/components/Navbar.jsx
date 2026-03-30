@@ -74,7 +74,7 @@ export default function Navbar() {
 
           {/* Mobile-only CTA inside nav */}
           <a
-            href="https://t.me/sptfy_premium"
+            href={siteDetails.support.telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={`${styles.ctaBtn} ${styles.ctaMobile}`}
@@ -100,7 +100,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <a
-          href="https://t.me/sptfy_premium"
+          href={siteDetails.support.telegramUrl}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.ctaBtn}

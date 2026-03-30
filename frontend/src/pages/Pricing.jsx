@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import GlowCard from '../components/GlowCard.jsx'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { siteDetails } from '../content/siteDetails.js'
 import styles from './Pricing.module.css'
 
-const TELEGRAM_URL = 'https://t.me/sptfy_premium'
+const TELEGRAM_URL = siteDetails.support.telegramUrl
 
 const KZ_PLANS = [
   { months: 1, basePrice: 700, labelKey: 'pricing.plan.1month', badge: null },

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import GlowCard from '../components/GlowCard.jsx'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { siteDetails } from '../content/siteDetails.js'
 import styles from './Landing.module.css'
 
 export default function Landing() {
@@ -44,7 +45,7 @@ export default function Landing() {
 
           <div className={styles.heroCtas}>
             <a
-              href="https://t.me/sptfy_premium"
+              href={siteDetails.support.telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.primaryBtn}
@@ -129,7 +130,7 @@ export default function Landing() {
             <h2 className={styles.ctaTitle}>{t('landing.cta.title')}</h2>
             <p className={styles.ctaDesc}>{t('landing.cta.desc')}</p>
             <a
-              href="https://t.me/sptfy_premium"
+              href={siteDetails.support.telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.primaryBtn}
