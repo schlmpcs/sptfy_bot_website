@@ -59,7 +59,7 @@ class UserSubscription(BaseModel):
 # ── Subscribe ─────────────────────────────────────────────────────────────────
 
 class SubscribeRequest(BaseModel):
-    telegram_id: int
+    telegram_id: Optional[int] = None   # not collected on the website
     region: str    # "KZ" | "RU"
     plan_type: str # "group" | "individual" | "duo"
     months: int
