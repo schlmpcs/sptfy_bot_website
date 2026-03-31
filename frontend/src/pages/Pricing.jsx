@@ -93,7 +93,6 @@ function KZPlans({ t }) {
         return (
           <PlanCard
             key={p.months}
-            planId={planId}
             label={t(p.labelKey)}
             price={total}
             currency="₸"
@@ -175,7 +174,6 @@ function RUPlans({ t }) {
             return (
               <PlanCard
                 key={p.months}
-                planId={planId}
                 label={t(p.labelKey)}
                 price={total}
                 currency="₽"
@@ -224,7 +222,6 @@ function RUPlans({ t }) {
             return (
               <>
                 <PlanCard
-                  planId={indId}
                   label={t('pricing.plan.individual')}
                   price={250}
                   currency="₽"
@@ -237,7 +234,6 @@ function RUPlans({ t }) {
                   t={t}
                 />
                 <PlanCard
-                  planId={duoId}
                   label={t('pricing.plan.duo')}
                   price={600}
                   currency="₽"

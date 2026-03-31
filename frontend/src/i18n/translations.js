@@ -113,6 +113,16 @@ const translations = {
     'pricing.feature.duo4': 'Гибкий день оплаты',
     'pricing.feature.duo5': 'Оплата картой или СБП',
 
+    // ── Cart ──────────────────────────────────────────────────
+    'cart.title': 'Корзина',
+    'cart.checkout': 'Оформить',
+    'cart.checkoutLoading': 'Открываем…',
+    'cart.remove': 'Удалить',
+    'cart.empty': 'Корзина пуста.',
+    'cart.error': 'Что-то пошло не так. Попробуйте ещё раз.',
+    'cart.close': 'Закрыть корзину',
+    'cart.perMonth': '· {currency}{price}/мес',
+
     // ── FAQ ────────────────────────────────────────────────────
     'faq.tag': 'Есть вопросы?',
     'faq.title': 'Часто задаваемые вопросы',
@@ -289,6 +299,16 @@ const translations = {
     'pricing.feature.duo4': 'Икемді төлем күні',
     'pricing.feature.duo5': 'Карта немесе ЖТЖ арқылы төлем',
 
+    // ── Cart ──────────────────────────────────────────────────
+    'cart.title': 'Себет',
+    'cart.checkout': 'Рәсімдеу',
+    'cart.checkoutLoading': 'Ашылуда…',
+    'cart.remove': 'Жою',
+    'cart.empty': 'Себет бос.',
+    'cart.error': 'Бірдеңе дұрыс болмады. Қайталап көріңіз.',
+    'cart.close': 'Себетті жабу',
+    'cart.perMonth': '· {currency}{price}/ай',
+
     // ── FAQ ────────────────────────────────────────────────────
     'faq.tag': 'Сұрақтар бар ма?',
     'faq.title': 'Жиі қойылатын сұрақтар',
@@ -463,6 +483,16 @@ const translations = {
     'pricing.feature.duo3': 'Monthly auto-reminders',
     'pricing.feature.duo4': 'Flexible payment day',
     'pricing.feature.duo5': 'Card or SBP payment',
+
+    // ── Cart ──────────────────────────────────────────────────
+    'cart.title': 'Cart',
+    'cart.checkout': 'Checkout',
+    'cart.checkoutLoading': 'Opening…',
+    'cart.remove': 'Remove',
+    'cart.empty': 'Your cart is empty.',
+    'cart.error': 'Something went wrong. Please try again.',
+    'cart.close': 'Close cart',
+    'cart.perMonth': '· {currency}{price}/mo',
 
     // ── FAQ ────────────────────────────────────────────────────
     'faq.tag': 'Got questions?',

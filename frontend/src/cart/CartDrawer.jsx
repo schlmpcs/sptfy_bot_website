@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useCart } from './CartContext.jsx'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 import styles from './CartDrawer.module.css'
 
 export default function CartDrawer() {
   const { plan, clearCart, isOpen, setIsOpen } = useCart()
+  const { t } = useLanguage()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -16,7 +18,6 @@ export default function CartDrawer() {
     if (!plan) return
     setLoading(true)
     setError(null)
-    // Open blank window synchronously (before async gap) to avoid popup blocker
     const newTab = window.open('', '_blank', 'noopener,noreferrer')
     try {
       const res = await fetch('/api/user/subscribe', {
@@ -37,14 +38,13 @@ export default function CartDrawer() {
       if (newTab) {
         newTab.location.href = data.telegram_bot_url
       } else {
-        // fallback if popup was blocked despite precaution
         window.open(data.telegram_bot_url, '_blank', 'noopener,noreferrer')
       }
       clearCart()
       setIsOpen(false)
     } catch (err) {
       newTab?.close()
-      setError(err.message || 'Something went wrong. Please try again.')
+      setError(err.message || t('cart.error'))
     } finally {
       setLoading(false)
     }
@@ -54,18 +54,20 @@ export default function CartDrawer() {
 
   return (
     <>
-      {/* Backdrop */}
       <div className={styles.backdrop} onClick={close} aria-hidden="true" />
 
-      {/* Drawer panel */}
-      <div className={styles.drawer} role="dialog" aria-modal="true" aria-label="Cart">
-        {/* Header */}
+      <div
+        className={styles.drawer}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t('cart.title')}
+        onKeyDown={(e) => e.key === 'Escape' && close()}
+      >
         <div className={styles.header}>
-          <h2 className={styles.title}>Cart</h2>
-          <button className={styles.closeBtn} onClick={close} aria-label="Close cart">✕</button>
+          <h2 className={styles.title}>{t('cart.title')}</h2>
+          <button className={styles.closeBtn} onClick={close} aria-label={t('cart.close')} autoFocus>✕</button>
         </div>
 
-        {/* Content */}
         <div className={styles.body}>
           {plan ? (
             <>
@@ -75,7 +77,7 @@ export default function CartDrawer() {
                   <span className={styles.priceAmount}>{plan.currency}{plan.price}</span>
                   {plan.duration_months > 1 && (
                     <span className={styles.pricePerMonth}>
-                      {' '}· {plan.currency}{plan.price_per_month}/mo
+                      {' '}{t('cart.perMonth').replace('{currency}', plan.currency).replace('{price}', plan.price_per_month)}
                     </span>
                   )}
                 </p>
@@ -88,7 +90,7 @@ export default function CartDrawer() {
                 </ul>
               </div>
 
-              {error && <p className={styles.errorMsg}>{error}</p>}
+              {error && <p className={styles.errorMsg} role="alert">{error}</p>}
 
               <div className={styles.actions}>
                 <button
@@ -96,19 +98,19 @@ export default function CartDrawer() {
                   onClick={handleCheckout}
                   disabled={loading}
                 >
-                  {loading ? 'Opening…' : 'Checkout'}
+                  {loading ? t('cart.checkoutLoading') : t('cart.checkout')}
                 </button>
                 <button
                   className={styles.removeBtn}
                   onClick={() => { clearCart(); close() }}
                   disabled={loading}
                 >
-                  Remove
+                  {t('cart.remove')}
                 </button>
               </div>
             </>
           ) : (
-            <p className={styles.emptyMsg}>Your cart is empty.</p>
+            <p className={styles.emptyMsg}>{t('cart.empty')}</p>
           )}
         </div>
       </div>
