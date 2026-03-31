@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { useCart } from '../cart/CartContext.jsx'
 import { siteDetails } from '../content/siteDetails.js'
 import styles from './Navbar.module.css'
 
@@ -14,6 +15,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { t, lang, setLang } = useLanguage()
+  const { plan, isOpen, setIsOpen } = useCart()
+  const cartCount = plan ? 1 : 0
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -97,6 +100,22 @@ export default function Navbar() {
             </button>
           ))}
         </div>
+
+        {/* Cart icon */}
+        <button
+          className={styles.cartBtn}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={`Cart${cartCount > 0 ? `, ${cartCount} item` : ', empty'}`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          {cartCount > 0 && (
+            <span className={styles.cartBadge} aria-hidden="true">{cartCount}</span>
+          )}
+        </button>
 
         {/* Desktop CTA */}
         <a
