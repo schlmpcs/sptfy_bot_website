@@ -13,8 +13,8 @@ export const siteDetails = {
   support: {
     telegramHandle: readEnv('VITE_SUPPORT_TELEGRAM_HANDLE', '@sptfy_premium_bot'),
     telegramUrl: readEnv('VITE_SUPPORT_TELEGRAM_URL', 'https://t.me/sptfy_premium_bot'),
-    email: readEnv('VITE_SUPPORT_EMAIL'),
-    phone: readEnv('VITE_SUPPORT_PHONE'),
+    email: readEnv('VITE_SUPPORT_EMAIL', 'sptfykz@outlook.com'),
+    phone: readEnv('VITE_SUPPORT_PHONE', '+7777467429'),
     workingHours: {
       ru: 'ежедневно, обычно отвечаем в течение нескольких часов',
       kz: 'күн сайын, әдетте бірнеше сағат ішінде жауап береміз',
@@ -77,6 +77,15 @@ export function getLegalLinks(lang) {
           en: 'Payment policy',
         }[lang] ?? 'Политика оплаты',
     },
+    {
+      to: '/refund-policy',
+      label:
+        {
+          ru: 'Политика возврата',
+          kz: 'Қайтару саясаты',
+          en: 'Refund policy',
+        }[lang] ?? 'Политика возврата',
+    },
   ]
 }
 
@@ -86,22 +95,34 @@ export function getBusinessDetails(lang) {
       ru: {
         inn: 'БИН',
         address: 'Адрес регистрации',
+        telegram: 'Telegram',
+        email: 'E-mail',
+        phone: 'Телефон',
         setup: 'Заполните реквизиты в файле siteDetails.js',
       },
       kz: {
         inn: 'БИН',
         address: 'Тіркеу мекенжайы',
+        telegram: 'Telegram',
+        email: 'E-mail',
+        phone: 'Телефон',
         setup: 'Деректерді siteDetails.js файлына толтырыңыз',
       },
       en: {
         inn: 'BIN',
         address: 'Registered address',
+        telegram: 'Telegram',
+        email: 'Email',
+        phone: 'Phone',
         setup: 'Fill in the business details in siteDetails.js',
       },
     }[lang] ??
     {
       inn: 'БИН',
       address: 'Адрес регистрации',
+      telegram: 'Telegram',
+      email: 'E-mail',
+      phone: 'Телефон',
       setup: 'Заполните реквизиты в файле siteDetails.js',
     }
 
@@ -110,6 +131,15 @@ export function getBusinessDetails(lang) {
   if (siteDetails.legal.inn) lines.push(`${labels.inn} ${siteDetails.legal.inn}`)
   if (siteDetails.legal.registrationAddress) {
     lines.push(`${labels.address}: ${siteDetails.legal.registrationAddress}`)
+  }
+  if (siteDetails.support.telegramHandle) {
+    lines.push(`${labels.telegram}: ${siteDetails.support.telegramHandle}`)
+  }
+  if (siteDetails.support.email) {
+    lines.push(`${labels.email}: ${siteDetails.support.email}`)
+  }
+  if (siteDetails.support.phone) {
+    lines.push(`${labels.phone}: ${siteDetails.support.phone}`)
   }
 
   if (

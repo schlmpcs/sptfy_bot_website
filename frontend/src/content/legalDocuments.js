@@ -413,10 +413,128 @@ function buildSafety(lang) {
   return documents[lang] ?? documents[LANG_FALLBACK]
 }
 
+function buildRefundPolicy(lang) {
+  const updatedAt = siteDetails.legal.updatedAt[lang] ?? siteDetails.legal.updatedAt[LANG_FALLBACK]
+
+  const documents = {
+    ru: {
+      eyebrow: 'Политика возврата',
+      title: 'Условия отмены, возврата и частичной компенсации',
+      lead: `Эта страница описывает, в каких случаях ${siteDetails.brandName} рассматривает отмену заказа, возврат средств или частичную компенсацию по уже активированным услугам.`,
+      updatedAt,
+      sections: [
+        {
+          title: '1. Когда можно запросить возврат',
+          paragraphs: [
+            'Если активация заказа ещё не началась, клиент может обратиться в поддержку для проверки возможности отмены и возврата.',
+            'Запрос рассматривается после проверки оплаты, статуса заявки и факта начала исполнения.',
+          ],
+        },
+        {
+          title: '2. Когда возврат ограничен',
+          paragraphs: [
+            'Если услуга уже активирована или полностью оказана, возврат возможен только в той части, где проблема возникла по нашей вине, либо если это прямо требуется применимым законодательством.',
+            'Изменения правил сторонних сервисов, региональные ограничения, блокировки аккаунта за нарушение правил платформы или ошибки в данных, переданных клиентом, сами по себе не считаются основанием для полного возврата.',
+          ],
+        },
+        {
+          title: '3. Как мы решаем спорные ситуации',
+          paragraphs: [
+            'До возврата средств мы можем предложить повторную активацию, замену способа подключения, исправление технической ошибки или соразмерную частичную компенсацию.',
+            'Если возврат одобрен, способ и срок перечисления зависят от исходного метода оплаты и подтверждения платёжной стороны.',
+          ],
+        },
+        {
+          title: '4. Куда обращаться',
+          paragraphs: [
+            `Для запроса по возврату напишите в Telegram ${siteDetails.support.telegramHandle}.`,
+            `Дополнительные контакты: ${siteDetails.support.phone}, ${siteDetails.support.email}.`,
+          ],
+        },
+      ],
+    },
+    kz: {
+      eyebrow: 'Қайтару саясаты',
+      title: 'Болдырмау, қайтару және ішінара өтемақы шарттары',
+      lead: `Бұл бетте ${siteDetails.brandName} тапсырысты болдырмау, қаражатты қайтару немесе белсендірілген қызметтер бойынша ішінара өтемақыны қандай жағдайларда қарайтыны түсіндіріледі.`,
+      updatedAt,
+      sections: [
+        {
+          title: '1. Қайтаруды қашан сұрауға болады',
+          paragraphs: [
+            'Егер белсендіру әлі басталмаса, клиент қолдауға жазып, болдырмау мен қайтару мүмкіндігін сұрай алады.',
+            'Өтініш төлем, тапсырыс күйі және орындаудың басталуы тексерілгеннен кейін қаралады.',
+          ],
+        },
+        {
+          title: '2. Қайтару шектелетін жағдайлар',
+          paragraphs: [
+            'Егер қызмет белсендірілген немесе толық көрсетілген болса, қайтару тек мәселе біздің тараптан туындаған бөлікте немесе заң талап еткен жағдайларда ғана мүмкін.',
+            'Үшінші тарап сервистерінің ережелерінің өзгеруі, аймақтық шектеулер, платформа ережесін бұзуға байланысты аккаунттың бұғатталуы немесе клиент берген деректердегі қателер толық қайтаруға автоматты негіз болмайды.',
+          ],
+        },
+        {
+          title: '3. Даулы жағдайларды шешу',
+          paragraphs: [
+            'Қаражатты қайтармас бұрын біз қайта белсендіруді, қосу тәсілін ауыстыруды, техникалық қатені түзетуді немесе ішінара өтемақыны ұсына аламыз.',
+            'Егер қайтару мақұлданса, аудару мерзімі мен тәсілі бастапқы төлем әдісіне және төлем жағының растауына байланысты болады.',
+          ],
+        },
+        {
+          title: '4. Байланыс',
+          paragraphs: [
+            `Қайтару туралы сұрақтар бойынша Telegram ${siteDetails.support.telegramHandle} арқылы жазыңыз.`,
+            `Қосымша байланыстар: ${siteDetails.support.phone}, ${siteDetails.support.email}.`,
+          ],
+        },
+      ],
+    },
+    en: {
+      eyebrow: 'Refund policy',
+      title: 'Cancellation, refunds, and partial compensation',
+      lead: `This page explains when ${siteDetails.brandName} may review cancellations, refunds, or partial compensation for activated services.`,
+      updatedAt,
+      sections: [
+        {
+          title: '1. When a refund can be requested',
+          paragraphs: [
+            'If activation has not started yet, the customer can contact support to review cancellation and refund options.',
+            'Each request is reviewed after payment verification, order status checks, and confirmation of whether fulfillment has begun.',
+          ],
+        },
+        {
+          title: '2. When refunds are limited',
+          paragraphs: [
+            'If the service has already been activated or fully delivered, a refund is only available for the portion affected by our error or when required by applicable law.',
+            'Changes in third-party platform rules, regional restrictions, account blocks caused by platform violations, or incorrect customer-provided data do not automatically qualify for a full refund.',
+          ],
+        },
+        {
+          title: '3. How disputes are handled',
+          paragraphs: [
+            'Before issuing a refund, we may offer re-activation, an alternative activation method, a technical fix, or a proportional partial compensation.',
+            'If a refund is approved, the timing and method depend on the original payment method and payment-side confirmation.',
+          ],
+        },
+        {
+          title: '4. Contact details',
+          paragraphs: [
+            `For refund requests, contact Telegram ${siteDetails.support.telegramHandle}.`,
+            `Additional contacts: ${siteDetails.support.phone}, ${siteDetails.support.email}.`,
+          ],
+        },
+      ],
+    },
+  }
+
+  return documents[lang] ?? documents[LANG_FALLBACK]
+}
+
 const legalDocumentBuilders = {
   offer: buildOffer,
   privacy: buildPrivacy,
   safety: buildSafety,
+  refundPolicy: buildRefundPolicy,
 }
 
 export function getLegalDocument(documentKey, lang) {

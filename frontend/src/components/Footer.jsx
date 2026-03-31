@@ -48,6 +48,16 @@ export default function Footer() {
             >
               {siteDetails.support.telegramHandle}
             </a>
+            {siteDetails.support.phone ? (
+              <a href={`tel:${siteDetails.support.phone}`} className={styles.supportLink}>
+                {siteDetails.support.phone}
+              </a>
+            ) : null}
+            {siteDetails.support.email ? (
+              <a href={`mailto:${siteDetails.support.email}`} className={styles.supportLink}>
+                {siteDetails.support.email}
+              </a>
+            ) : null}
             <p className={styles.supportNote}>{supportNote}</p>
           </div>
         </div>
