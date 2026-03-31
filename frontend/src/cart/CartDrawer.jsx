@@ -16,6 +16,8 @@ export default function CartDrawer() {
     if (!plan) return
     setLoading(true)
     setError(null)
+    // Open blank window synchronously (before async gap) to avoid popup blocker
+    const newTab = window.open('', '_blank', 'noopener,noreferrer')
     try {
       const res = await fetch('/api/user/subscribe', {
         method: 'POST',
@@ -28,13 +30,20 @@ export default function CartDrawer() {
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
+        newTab?.close()
         throw new Error(data.detail || `Server error ${res.status}`)
       }
       const data = await res.json()
-      window.open(data.telegram_bot_url, '_blank', 'noopener,noreferrer')
+      if (newTab) {
+        newTab.location.href = data.telegram_bot_url
+      } else {
+        // fallback if popup was blocked despite precaution
+        window.open(data.telegram_bot_url, '_blank', 'noopener,noreferrer')
+      }
       clearCart()
       setIsOpen(false)
     } catch (err) {
+      newTab?.close()
       setError(err.message || 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
@@ -71,7 +80,7 @@ export default function CartDrawer() {
                   )}
                 </p>
                 <ul className={styles.featureList}>
-                  {plan.features.map((f) => (
+                  {(plan.features ?? []).map((f) => (
                     <li key={f} className={styles.featureItem}>
                       <span className={styles.check}>✓</span>{f}
                     </li>
@@ -91,7 +100,7 @@ export default function CartDrawer() {
                 </button>
                 <button
                   className={styles.removeBtn}
-                  onClick={() => { clearCart(); setError(null) }}
+                  onClick={() => { clearCart(); close() }}
                   disabled={loading}
                 >
                   Remove
