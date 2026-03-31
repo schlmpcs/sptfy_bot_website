@@ -20,7 +20,7 @@ const RU_GROUP_PLANS = [
   { months: 12, basePrice: 200, labelKey: 'pricing.plan.12months', badge: 'maxSavings' },
 ]
 
-function PlanCard({ planId, label, price, currency, perMonth, features, badgeKey, highlighted = false, isInCart, onAdd, t }) {
+function PlanCard({ label, price, currency, perMonth, features, badgeKey, highlighted = false, isInCart, onAdd, t }) {
   const badgeText = badgeKey ? t(`pricing.badge.${badgeKey}`) : null
   return (
     <GlowCard highlighted={highlighted} className={styles.planCard}>
