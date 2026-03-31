@@ -106,15 +106,26 @@ const { plan, addToCart, clearCart, isOpen, setIsOpen } = useCart()
 
 ## Backend
 
-No changes required. Uses existing endpoint:
+**One small change required:** make `telegram_id` optional in `SubscribeRequest` (currently required `int`).
+
+```python
+# models.py
+class SubscribeRequest(BaseModel):
+    telegram_id: Optional[int] = None   # not collected on website
+    region: str
+    plan_type: str
+    months: int
+```
+
+Uses existing endpoint:
 
 ```
 POST /api/user/subscribe
-Body: { telegram_id (omitted for now), region, plan_type, months }
+Body: { region, plan_type, months }
 Returns: { success, message, telegram_bot_url }
 ```
 
-Note: `telegram_id` is not collected on the website — identity is resolved inside the Telegram bot after redirect.
+Identity is resolved inside the Telegram bot after redirect — `telegram_id` is not needed at this stage.
 
 ---
 
