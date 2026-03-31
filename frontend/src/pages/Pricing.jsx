@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import GlowCard from '../components/GlowCard.jsx'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { useCart } from '../cart/CartContext.jsx'
 import { siteDetails } from '../content/siteDetails.js'
 import styles from './Pricing.module.css'
 
@@ -19,7 +20,7 @@ const RU_GROUP_PLANS = [
   { months: 12, basePrice: 200, labelKey: 'pricing.plan.12months', badge: 'maxSavings' },
 ]
 
-function PlanCard({ label, price, currency, perMonth, features, badgeKey, highlighted = false, t }) {
+function PlanCard({ planId, label, price, currency, perMonth, features, badgeKey, highlighted = false, isInCart, onAdd, t }) {
   const badgeText = badgeKey ? t(`pricing.badge.${badgeKey}`) : null
   return (
     <GlowCard highlighted={highlighted} className={styles.planCard}>
@@ -49,19 +50,20 @@ function PlanCard({ label, price, currency, perMonth, features, badgeKey, highli
         ))}
       </ul>
 
-      <a
-        href={TELEGRAM_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${styles.subscribeBtn} ${highlighted ? styles.subscribeBtnHighlighted : ''}`}
+      <button
+        onClick={onAdd}
+        disabled={isInCart}
+        className={`${styles.subscribeBtn} ${highlighted ? styles.subscribeBtnHighlighted : ''} ${isInCart ? styles.subscribeBtnInCart : ''}`}
       >
-        {t('pricing.subscribeBtn')}
-      </a>
+        {isInCart ? t('pricing.inCartBtn') : t('pricing.addToCartBtn')}
+      </button>
     </GlowCard>
   )
 }
 
 function KZPlans({ t }) {
+  const { plan, addToCart } = useCart()
+
   const features = [
     t('pricing.feature.kz1'),
     t('pricing.feature.kz2'),
@@ -69,21 +71,38 @@ function KZPlans({ t }) {
     t('pricing.feature.kz4'),
     t('pricing.feature.kz5'),
   ]
+
   return (
     <div className={styles.plansGrid}>
-      {KZ_PLANS.map((plan) => {
-        const total = plan.basePrice * plan.months
-        const perMonth = plan.months > 1 ? plan.basePrice : null
+      {KZ_PLANS.map((p) => {
+        const total = p.basePrice * p.months
+        const perMonth = p.months > 1 ? p.basePrice : null
+        const planId = `kz_group_${p.months}m`
+        const cartPlan = {
+          id: planId,
+          name: t(p.labelKey),
+          region: 'KZ',
+          plan_type: 'group',
+          price: total,
+          price_per_month: p.basePrice,
+          currency: '₸',
+          duration_months: p.months,
+          features,
+          highlighted: p.badge === 'popular',
+        }
         return (
           <PlanCard
-            key={plan.months}
-            label={t(plan.labelKey)}
+            key={p.months}
+            planId={planId}
+            label={t(p.labelKey)}
             price={total}
             currency="₸"
             perMonth={perMonth}
             features={features}
-            badgeKey={plan.badge}
-            highlighted={plan.badge === 'popular'}
+            badgeKey={p.badge}
+            highlighted={p.badge === 'popular'}
+            isInCart={plan?.id === planId}
+            onAdd={() => addToCart(cartPlan)}
             t={t}
           />
         )
@@ -94,6 +113,7 @@ function KZPlans({ t }) {
 
 function RUPlans({ t }) {
   const [subTab, setSubTab] = useState('group')
+  const { plan, addToCart } = useCart()
 
   const groupFeatures = [
     t('pricing.feature.rug1'),
@@ -136,19 +156,35 @@ function RUPlans({ t }) {
 
       {subTab === 'group' && (
         <div className={styles.plansGrid}>
-          {RU_GROUP_PLANS.map((plan) => {
-            const total = plan.basePrice * plan.months
-            const perMonth = plan.months > 1 ? plan.basePrice : null
+          {RU_GROUP_PLANS.map((p) => {
+            const total = p.basePrice * p.months
+            const perMonth = p.months > 1 ? p.basePrice : null
+            const planId = `ru_group_${p.months}m`
+            const cartPlan = {
+              id: planId,
+              name: t(p.labelKey),
+              region: 'RU',
+              plan_type: 'group',
+              price: total,
+              price_per_month: p.basePrice,
+              currency: '₽',
+              duration_months: p.months,
+              features: groupFeatures,
+              highlighted: p.badge === 'popular',
+            }
             return (
               <PlanCard
-                key={plan.months}
-                label={t(plan.labelKey)}
+                key={p.months}
+                planId={planId}
+                label={t(p.labelKey)}
                 price={total}
                 currency="₽"
                 perMonth={perMonth}
                 features={groupFeatures}
-                badgeKey={plan.badge}
-                highlighted={plan.badge === 'popular'}
+                badgeKey={p.badge}
+                highlighted={p.badge === 'popular'}
+                isInCart={plan?.id === planId}
+                onAdd={() => addToCart(cartPlan)}
                 t={t}
               />
             )
@@ -158,26 +194,64 @@ function RUPlans({ t }) {
 
       {subTab === 'individual' && (
         <div className={styles.plansGrid}>
-          <PlanCard
-            label={t('pricing.plan.individual')}
-            price={250}
-            currency="₽"
-            perMonth={null}
-            features={indFeatures}
-            badgeKey="personal"
-            highlighted={false}
-            t={t}
-          />
-          <PlanCard
-            label={t('pricing.plan.duo')}
-            price={600}
-            currency="₽"
-            perMonth={300}
-            features={duoFeatures}
-            badgeKey="bestForTwo"
-            highlighted={true}
-            t={t}
-          />
+          {(() => {
+            const indId = 'ru_individual_1m'
+            const duoId = 'ru_duo_1m'
+            const indCartPlan = {
+              id: indId,
+              name: t('pricing.plan.individual'),
+              region: 'RU',
+              plan_type: 'individual',
+              price: 250,
+              price_per_month: 250,
+              currency: '₽',
+              duration_months: 1,
+              features: indFeatures,
+              highlighted: false,
+            }
+            const duoCartPlan = {
+              id: duoId,
+              name: t('pricing.plan.duo'),
+              region: 'RU',
+              plan_type: 'duo',
+              price: 600,
+              price_per_month: 300,
+              currency: '₽',
+              duration_months: 1,
+              features: duoFeatures,
+              highlighted: true,
+            }
+            return (
+              <>
+                <PlanCard
+                  planId={indId}
+                  label={t('pricing.plan.individual')}
+                  price={250}
+                  currency="₽"
+                  perMonth={null}
+                  features={indFeatures}
+                  badgeKey="personal"
+                  highlighted={false}
+                  isInCart={plan?.id === indId}
+                  onAdd={() => addToCart(indCartPlan)}
+                  t={t}
+                />
+                <PlanCard
+                  planId={duoId}
+                  label={t('pricing.plan.duo')}
+                  price={600}
+                  currency="₽"
+                  perMonth={300}
+                  features={duoFeatures}
+                  badgeKey="bestForTwo"
+                  highlighted={true}
+                  isInCart={plan?.id === duoId}
+                  onAdd={() => addToCart(duoCartPlan)}
+                  t={t}
+                />
+              </>
+            )
+          })()}
         </div>
       )}
     </div>
